@@ -1,0 +1,29 @@
+<div class="container">
+    <app-summary-worldwide width="100%"></app-summary-worldwide>
+    <app-cases-distribution-worldwide></app-cases-distribution-worldwide>
+    <app-daily-cases-worldwide></app-daily-cases-worldwide>
+    <app-total-cases-worldwide></app-total-cases-worldwide>
+    <app-cases-by-country></app-cases-by-country>
+</div>
+<!-- worldwide news -->
+<table class="table table-bordered table-responsive">
+    <thead class="text-center" style="background-color:rgba(173, 216, 230,0.4)">
+        <tr style="background-color:rgba(173, 216, 230,0.8)">
+            <th colspan="4">Worldwide Corona Virus news</th>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Country</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let new of newsArray">
+            <td>{{new.date}}</td>
+            <td>{{new.description}}</td>
+            <td>{{new.slug}}</td>
+            <td>{{new.writerDisplayName}}</td>
+        </tr>
+    </tbody>
+</table>

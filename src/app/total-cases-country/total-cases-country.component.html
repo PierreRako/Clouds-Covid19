@@ -1,0 +1,17 @@
+<div style="margin-bottom: 10px;">
+    <div class="row text-center font-bold " style="background-color:rgba(173, 216, 230,0.4)">
+        <div class="col-md-12">
+            <h2>Corona Virus Total Cases in {{ name }}</h2>
+        </div>
+    </div>
+    <div style="display: block;">
+        <canvas baseChart
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColor"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType">
+        </canvas>
+    </div>
+</div>

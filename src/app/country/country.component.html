@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row text-center" style="background-color:rgba(25, 25, 25,0.8); margin-bottom: 10px;">
+        <div class="col-md-12">
+        <h5 class="font-weight-bold" style="color: white; padding: 10px;"><a routerLink="/world"> Worldwide </a> > {{ country.name }}</h5>
+        </div>
+    </div>
+
+    <!-- Here is the summary table of France' data -->
+    <div style="margin-bottom: 10px;">
+        <div class="row text-center font-weight-bolder" style="background-color:rgba(173, 216, 230,0.4) ; margin-bottom: 5px">
+            <div class="col-md-12">
+                <h2>Coronary Virus Summary in {{ country.name }}</h2>
+            </div>
+        </div>
+        
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(255, 235, 205,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">Total cases</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(255, 235, 205,1)">
+                <h3 class="text-right font-weight-normal" style="padding:5px"> {{ country.totalCases | number }} </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(255, 235, 205,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">New Cases</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(255, 235, 205,1)">
+                <h3 class="text-right font-weight-normal " style="padding:5px"> {{ country.newCases | number }} </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(255, 235, 205,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">Active cases</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(255, 235, 205,1)">
+                <h3 class="text-right font-weight-normal " style="padding:5px"> {{ activeCases | number }} </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(236, 248, 127,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">Total recovered</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(236, 248, 127,1)">
+                <h3 class="text-right font-weight-normal " style="padding:5px"> {{ country.totalRecovered | number }} </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(236, 248, 127,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">New recovered</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(236, 248, 127,1)">
+                <h3 class="text-right font-weight-normal " style="padding:5px"> {{ country.newRecovered | number }} </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(236, 248, 127,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">Recovery rate</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(236, 248, 127,1)">
+                <h3 class="text-right font-weight-normal " style="padding:5px"> {{recoveryRate | number : '1.0-2'}} % </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(255, 150, 54,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">Total deaths</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(255, 150, 54,1)">
+                <h3 class="text-right font-weight-normal" style="padding:5px"> {{ country.totalDeaths }} </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(255, 150, 54,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">New deaths</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(255, 150, 54,1)">
+                <h3 class="text-right font-weight-normal" style="padding:5px"> {{ country.newDeaths | number }} </h3>
+            </div>
+        </div>
+
+        <div class="row" style="padding:2px">
+            <div class="col-md-9" style="background-color:rgba(255, 150, 54,0.7)">
+                <h3 class="font-weight-light" style="padding:5px">Mortality rate</h3>    
+            </div>
+            <div class="col-md-3" style="background-color:rgba(255, 150, 54,1)">
+                <h3 class="text-right font-weight-normal" style="padding:5px">{{ mortalityRate | number : '1.0-2' }} % </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Here is the pie chart template -->
+    <app-cases-distribution-country [slug]="slug"></app-cases-distribution-country> 
+
+    <!-- Here is the bar chart template -->
+    <app-daily-cases-country [slug]="slug"></app-daily-cases-country>
+    
+    <!-- Here is the line chart template -->
+    <app-total-cases-country [slug]="slug"></app-total-cases-country>
+
+    <!-- Here are the news -->
+    <table class="table table-bordered">
+        <thead class="text-center" style="background-color:rgba(173, 216, 230,0.4)">
+            <tr style="background-color:rgba(173, 216, 230,0.8)">
+                <th colspan="4">Corona Virus news in {{ country.name }}</th>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Country</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let new of newsArray">
+                <td>{{new.date}}</td>
+                <td>{{new.description}}</td>
+                <td>{{new.slug}}</td>
+                <td>{{new.writerDisplayName}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

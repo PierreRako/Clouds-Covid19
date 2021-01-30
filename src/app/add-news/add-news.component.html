@@ -1,0 +1,55 @@
+<div class="text-center" *ngIf="!authService.getUser()">
+    <button class="btn btn-info" (click)="authService.signInWithGoogle()"> Sign In with Google </button>
+</div>
+
+<div class="container" *ngIf="authService.getUser()">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>{{ authService.getUser().displayName }}</h3>
+        </div>
+
+        <div class="col-sm-3 text-right">
+            <button class="btn btn-danger" (click)="authService.signOut()">Sign Out</button>
+        </div>
+    </div>
+    
+    <div *ngIf="authService.getUser().isEligible">
+        <h4>Add a piece of new :</h4>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="dateInput">Date</label>
+                    <input type="date" id="dateInput"
+                    name="dateInput"
+                    class="form-control"
+                    ngModel
+                    required/>
+                </div>
+                <div class="col-md-6">
+                    <label for="slugInput">Country</label>       
+                    <select id="slugInput"
+                    name="slugInput"
+                    class="form-control"
+                    ngModel
+                    required>
+                        <option value="Worldwide">Worldwide</option>
+                        <option *ngFor="let country of countries" [value]="country.Slug"> {{country.Country}} </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="descriptionInput">Description</label>
+                    <input type="text" id="descriptionInput"
+                    name="descriptionInput"
+                    class="form-control"
+                    placeholder="Write your news !!"
+                    ngModel
+                    required/>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Add</button>
+        </form>
+    </div>
+    <p *ngIf="!(authService.getUser().isEligible)" class="text-center" style="background-color: rgba(182, 139, 139,0.2);"> You're not allowed to add news. Contact the admin if you want to become eligible ! </p>
+</div>
